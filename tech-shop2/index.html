@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech-Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            background-color: #0e0e0e;
+            color: white;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+         header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: #0e0e0e;
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .icon-container {
+            position: relative;
+            margin-left: 20px;
+            cursor: pointer;
+        }
+
+        .icon-container i {
+            font-size: 20px;
+            padding: 50px;
+        }
+
+        /* Tooltip styling */
+        .tooltip {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgb(48, 43, 43);
+            color: white;
+            padding: 5px 10px;
+            font-size: 12px;
+            border-radius: 5px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        .icon-container:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px 200px;
+        }
+
+        .hero-content {
+            max-width: 500px;
+        }
+
+        .hero-content h4 {
+            color: #bbb;
+            font-size: 24px;
+        }
+
+        .hero-content h1 {
+            font-size: 40px;
+            margin: 10px 0;
+        }
+
+        .price {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: gray;
+            font-size: 20px;
+            margin-left: 10px;
+        }
+
+        .shop-btn {
+            background: red;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        /* Background text styling */
+        .background-text {
+            position: absolute;
+            left: 5%;
+            font-size: 200px;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.05);
+            z-index: -1;
+            text-transform: uppercase;
+        }
+
+        .hero-image img {
+            width: 500px;
+        }
+
+        /**********************Screen design****************** */
+
+        /* Tablet screen */
+        @media (max-width: 1024px) {
+            header {
+                padding: 20px;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px;
+            }
+
+            .hero-content {
+                max-width: 80%;
+            }
+
+            .background-text {
+                font-size: 120px;
+                left: 10%;
+            }
+
+            .hero-image img {
+                width: 350px;
+                margin-top: 20px;
+            }
+        }
+
+        /* for  Mobile screen  */
+        @media (max-width: 360px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px;
+            }
+
+            nav {
+                margin-top: 10px;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .hero {
+                flex-direction: column;
+                padding: 20px;
+                text-align: center;
+            }
+
+            .hero-content h4 {
+                font-size: 18px;
+            }
+
+            .hero-content h1 {
+                font-size: 24px;
+            }
+
+            .price {
+                font-size: 20px;
+            }
+
+            .shop-btn {
+                font-size: 14px;
+                padding: 8px 15px;
+            }
+
+            .background-text {
+                font-size: 80px;
+                left: 5%;
+            }
+
+            .hero-image img {
+                width: 250px;
+            }
+        }   
+        
+        /* ****** Responsive Design for feature [products] ****** */
+
+        /* Phones: 1 product per row */
+        @media (max-width: 360px) {
+            .product-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .product-card {
+                width: 90%;
+            }
+        }
+
+        /* Tablets: 2 products per row */
+        @media (max-width: 1024px) {
+            .product-container {
+                justify-content: space-around;
+            }
+            .product-card {
+                width: 45%;
+            }
+        }
+
+        /* Laptops & larger screens: 3+ products per row */
+        @media (min-width: 1025px) {
+            .product-container {
+                justify-content: center;
+            }
+            .product-card {
+                width: 200px;
+            }
+        } 
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Tech-Shop</div>
+        <nav>
+            <div class="icon-container">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <div class="tooltip">Search</div>
+            </div>
+            <div class="icon-container">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <div class="tooltip">Cart</div>
+            </div>
+            <div class="icon-container">
+                <i class="fa-regular fa-user"></i>
+                <div class="tooltip">Profile</div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1 class="background-text">In Ear</h1>
+        <div class="hero-content">
+            <h4>boAt Airdopes 131</h4>
+            <h1>Featherweight For Comfort All-Day.</h1>
+            <p class="price">₹1,099 <span class="old-price">₹2,999</span></p>
+            <button class="shop-btn">Shop Now</button>
+        </div>
+        <div class="hero-image">
+            <img src="/Assets/products/boat131-3.png" alt="boAt Airdopes 131">
+        </div>
+    </section> 
+
+    <section style="background-color: #1a1a1a; ">
+    <h1 style="margin-top: 30px; text-align: center;">Featured Products</h1>
+
+    <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 120px; padding: 50px;">
+
+        <!-- Product 1 -->
+        <div style="background-color: #1a1a1a; padding: 20px; border-radius: 10px; text-align: center; width: 180px;">
+            <h2 style="font-size: 10px; margin: 10px 0;">boAt Airdopes 203</h2>
+            <img src="/Assets/products/boat203-1.png" alt="boAt Airdopes 203" style="width: 100%; border-radius: 10px;">
+            <p style="font-size: 10px; font-weight: bold;">₹1,074 <span style="text-decoration: line-through; color: red; font-size: 14px;">₹3,999</span></p>
+        </div>
+
+        <!-- Product 2 -->
+        <div style="background-color: #1a1a1a; padding: 20px; border-radius: 10px; text-align: center; width: 200px;">
+            <h2 style="font-size: 18px; margin: 10px 0;">boAt Rockerz 518</h2>
+            <img src="/Assets/products/boat518-1.png" alt="boAt Rockerz 518" style="width: 100%; border-radius: 10px;">
+            <p style="font-size: 18px; font-weight: bold;">₹1,299 <span style="text-decoration: line-through; color: red; font-size: 14px;">₹3,990</span></p>
+        </div>
+
+        <!-- Center Product (Larger) -->
+        <div style="background-color: #1a1a1a; padding: 20px; border-radius: 10px; text-align: center; width: 280px;">
+            <h2 style="font-size: 25px; font-weight: lighter; margin: 10px 0;">JBL Tune 760NC</h2>
+            <img src="/Assets/products/jbl760nc-1.png" alt="JBL Tune 760NC" style="width: 120%; border-radius: 10px;">
+            <p style="font-size: 25px; font-weight: bold;">₹5,999 <span style="text-decoration: line-through; color: red; font-size: 16px;">₹7,999</span></p>
+        </div>
+
+        <!-- Product 4 -->
+        <div style="background-color: #1a1a1a; padding: 20px; border-radius: 10px; text-align: center; width: 200px;">
+            <h2 style="font-size: 18px; margin: 10px 0;">boAt Rockerz 255</h2>
+            <img src="/Assets/products/boat255r-1.png" alt="boAt Rockerz 255" style="width: 100%; border-radius: 10px;">
+            <p style="font-size: 18px; font-weight: bold;">₹899 <span style="text-decoration: line-through; color: red; font-size: 14px;">₹2,990</span></p>
+        </div>
+
+        <!-- Product 5 -->
+        <div style="background-color: #1a1a1a; padding: 20px; border-radius: 10px; text-align: center; width: 180px;">
+            <h2 style="font-size: 10px;  margin: 10px 0;">JBL Endurance Run S</h2>
+            <img src="/Assets/products/jbl-endu-1.png" alt="JBL Endurance Run S" style="width: 100%; border-radius: 10px;">
+            <p style="font-size: 10px; font-weight: lighter;">₹999 <span style="text-decoration: line-through; color: red; font-size: 14px;">₹1,599</span></p>
+        </div>
+
+    </div>
+</section>
+</body>
+</html>
