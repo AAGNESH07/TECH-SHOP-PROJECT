@@ -111,6 +111,51 @@
             cursor: pointer;
             margin-top: 20px;
         }
+         /* Profile Hover Box */
+         .profile-box {
+            position: absolute;
+            top: 50px;
+            right: 0;
+            width: 220px;
+            background-color: #222;
+            border: 1px solid #444;
+            padding: 15px;
+            display: none;
+            z-index: 100;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile-box p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .profile-box p:first-child {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .profile-box button {
+            width: 100%;
+            padding: 8px;
+            background-color: transparent;
+            border: 1px solid white;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .profile-box hr {
+            border: 0.5px solid #444;
+            margin: 10px 0;
+        }
+
+        /* Show box on hover */
+        .icon-container:hover .profile-box {
+            display: block;
+        }
 
         /* Background text styling */
         .background-text {
@@ -239,6 +284,7 @@
             }
            
         } 
+        
     </style>
 </head>
 <body>
@@ -255,7 +301,13 @@
             </div>
             <div class="icon-container">
                 <i class="fa-regular fa-user"></i>
-                <div class="tooltip">Profile </div>
+                <div class="profile-box">
+                    <p>Hello!</p>
+                    <p>Access account and manage orders</p>
+                    <button>Login / Signup</button>
+                    <hr>
+                    <p>Please Login</p>
+                </div>
             </div>
         </nav>
     </header>
